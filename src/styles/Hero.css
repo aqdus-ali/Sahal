@@ -1,0 +1,159 @@
+.hero-section {
+  background:
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(85, 229, 232, 0.35),
+      transparent 45%
+    ),
+    radial-gradient(
+      circle at 10% 90%,
+      rgba(255, 59, 92, 0.18),
+      transparent 40%
+    );
+}
+
+.hero-bgfx {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-fx {
+  position: absolute;
+  bottom: -120px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 22%;
+
+  opacity: 0;
+
+  animation-name: heroFxUp;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+
+  will-change: transform;
+}
+
+@keyframes heroFxUp {
+  0% {
+    transform:
+      translate3d(0, 0, 0)
+      rotate(var(--fx-r0));
+
+    opacity: 0;
+  }
+
+  12% {
+    opacity: var(--fx-opacity);
+  }
+
+  88% {
+    opacity: var(--fx-opacity);
+  }
+
+  100% {
+    transform:
+      translate3d(
+        var(--fx-sway),
+        -125vh,
+        0
+      )
+      rotate(var(--fx-r1));
+
+    opacity: 0;
+  }
+}
+
+@keyframes heroChipFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+.hero-chip {
+  animation: heroChipFloat 5s ease-in-out infinite;
+}
+
+.hero-chip-delay-1 {
+  animation-delay: 1s;
+}
+
+.hero-chip-delay-2 {
+  animation-delay: 2s;
+}
+
+@keyframes heroReveal {
+  from {
+    opacity: 0;
+    transform: translateY(34px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-reveal {
+  animation:
+    heroReveal
+    0.8s
+    cubic-bezier(0.2, 0.7, 0.2, 1)
+    both;
+}
+
+.hero-screen {
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.hero-screen::-webkit-scrollbar {
+  display: none;
+}
+
+@media (max-width: 860px) {
+  .hero-chip {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-fx {
+    animation: none !important;
+    opacity: var(--fx-opacity);
+    bottom: auto;
+  }
+
+  .hero-chip,
+  .hero-reveal {
+    animation: none !important;
+  }
+}
+.hero-screen {
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: auto;
+  overscroll-behavior: none;
+}
+
+.hero-screen::-webkit-scrollbar {
+  display: none;
+}
+
+.hero-screen img {
+  display: block;
+  width: 100%;
+  height: auto;
+
+  user-select: none;
+  -webkit-user-drag: none;
+}

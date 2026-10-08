@@ -197,8 +197,8 @@ const products = [
     title: "Hot Chocolate Gift Pack",
     category: "Gifts",
     image: chocolateGift,
-    price: 30,
-    oldPrice: 45,
+    price: 18,
+    oldPrice: 25,
     rating: 4,
     reviews: "15,200",
   },
@@ -223,6 +223,7 @@ const ProductShowcase = () => {
 
   useEffect(() => {
     const section = sectionRef.current;
+
     if (!section) return;
 
     const elements = section.querySelectorAll(".product-rv");
@@ -236,7 +237,9 @@ const ProductShowcase = () => {
           observer.unobserve(entry.target);
         });
       },
-      { threshold: 0.12 }
+      {
+        threshold: 0.12,
+      }
     );
 
     elements.forEach((element) => observer.observe(element));
@@ -281,7 +284,11 @@ const ProductShowcase = () => {
 
   const getRating = (rating) => {
     const fullStars = Math.floor(rating);
-    return "★".repeat(fullStars) + (rating % 1 ? "☆" : "");
+
+    return (
+      "★".repeat(fullStars) +
+      (rating % 1 ? "☆" : "")
+    );
   };
 
   return (
@@ -296,6 +303,8 @@ const ProductShowcase = () => {
       "
     >
       <div className="mx-auto max-w-[1160px] px-[22px]">
+
+        {/* Heading */}
         <div className="product-rv mb-[44px]">
           <span
             className="
@@ -340,6 +349,7 @@ const ProductShowcase = () => {
           </p>
         </div>
 
+        {/* Deal Bar */}
         <div
           className="
             product-rv
@@ -358,9 +368,13 @@ const ProductShowcase = () => {
           "
         >
           <span>⏰ Deal of the Day</span>
-          <span>Ends in {formatCountdown()}</span>
+
+          <span>
+            Ends in {formatCountdown()}
+          </span>
         </div>
 
+        {/* Categories */}
         <div
           className="
             product-rv
@@ -388,6 +402,7 @@ const ProductShowcase = () => {
                   font-bold
                   transition-colors
                   duration-200
+
                   ${
                     active
                       ? "border-[#FF3B5C] bg-[#FF3B5C] text-white"
@@ -401,6 +416,7 @@ const ProductShowcase = () => {
           })}
         </div>
 
+        {/* Products */}
         <div
           className="
             grid
@@ -417,6 +433,7 @@ const ProductShowcase = () => {
               <article
                 key={product.title}
                 className="
+                  group
                   product-rv
                   rounded-[20px]
                   border
@@ -424,10 +441,12 @@ const ProductShowcase = () => {
                   bg-white
                   p-3
                   transition-shadow
-                  duration-300
+                  duration-[250ms]
+                  ease-[ease]
                   hover:shadow-[0_14px_40px_-16px_rgba(40,20,40,0.22)]
                 "
               >
+                {/* Product Image */}
                 <div
                   className="
                     relative
@@ -446,9 +465,14 @@ const ProductShowcase = () => {
                       w-full
                       select-none
                       object-cover
+                      transition-transform
+                      duration-[400ms]
+                      ease-[ease]
+                      group-hover:scale-[1.12]
                     "
                   />
 
+                  {/* Wishlist */}
                   <button
                     type="button"
                     aria-label={`Toggle wishlist for ${product.title}`}
@@ -457,6 +481,7 @@ const ProductShowcase = () => {
                       absolute
                       right-[10px]
                       top-[10px]
+                      z-10
                       grid
                       h-[30px]
                       w-[30px]
@@ -471,6 +496,7 @@ const ProductShowcase = () => {
                   </button>
                 </div>
 
+                {/* Product title */}
                 <h3
                   className="
                     mx-1
@@ -485,6 +511,7 @@ const ProductShowcase = () => {
                   {product.title}
                 </h3>
 
+                {/* Price */}
                 <div
                   className="
                     m-1
@@ -522,8 +549,10 @@ const ProductShowcase = () => {
                   </em>
                 </div>
 
+                {/* Rating */}
                 <div className="m-1 text-[12px] text-[#F5B100]">
                   {getRating(product.rating)}{" "}
+
                   <small className="text-[#6B6B76]">
                     {product.reviews}
                   </small>

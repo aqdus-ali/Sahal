@@ -6,6 +6,9 @@ const Navbar = () => {
 
   const closeMenu = () => setMenuOpen(false);
 
+  const mobileLinkClass =
+    "block rounded-lg px-3 py-[11px] text-[14px] leading-[20px] font-semibold text-[#6B6B76] transition-colors duration-200 hover:bg-[#FFF4F6] hover:text-[#FF3B5C]";
+
   return (
     <nav
       className="
@@ -15,11 +18,13 @@ const Navbar = () => {
         w-full
         border-b
         border-[#EDEDF1]
-        bg-white/90
+        bg-white/95
         backdrop-blur-[12px]
         font-[Montserrat]
+        relative
       "
     >
+      {/* Top Navbar */}
       <div
         className="
           mx-auto
@@ -40,7 +45,7 @@ const Navbar = () => {
           />
         </a>
 
-        {/* Desktop Links */}
+        {/* Desktop Navigation */}
         <div
           className="
             hidden
@@ -52,45 +57,27 @@ const Navbar = () => {
             lg:flex
           "
         >
-          <a
-            href="#features"
-            className="transition-colors duration-200 hover:text-[#FF3B5C]"
-          >
+          <a href="#features" className="hover:text-[#FF3B5C]">
             Features
           </a>
 
-          <a
-            href="#shop"
-            className="transition-colors duration-200 hover:text-[#FF3B5C]"
-          >
+          <a href="#shop" className="hover:text-[#FF3B5C]">
             Products
           </a>
 
-          <a
-            href="#vendors"
-            className="transition-colors duration-200 hover:text-[#FF3B5C]"
-          >
+          <a href="#vendors" className="hover:text-[#FF3B5C]">
             Vendors
           </a>
 
-          <a
-            href="#currency"
-            className="transition-colors duration-200 hover:text-[#FF3B5C]"
-          >
+          <a href="#currency" className="hover:text-[#FF3B5C]">
             Sahal Currency
           </a>
 
-          <a
-            href="#screens"
-            className="transition-colors duration-200 hover:text-[#FF3B5C]"
-          >
+          <a href="#screens" className="hover:text-[#FF3B5C]">
             App Screens
           </a>
 
-          <a
-            href="#contact"
-            className="transition-colors duration-200 hover:text-[#FF3B5C]"
-          >
+          <a href="#contact" className="hover:text-[#FF3B5C]">
             Contact
           </a>
         </div>
@@ -119,12 +106,12 @@ const Navbar = () => {
           Download App
         </a>
 
-        {/* Mobile Hamburger */}
+        {/* Mobile Toggle */}
         <button
           type="button"
           aria-label="Toggle navigation menu"
           aria-expanded={menuOpen}
-          onClick={() => setMenuOpen(!menuOpen)}
+          onClick={() => setMenuOpen((prev) => !prev)}
           className="
             flex
             h-[42px]
@@ -168,93 +155,102 @@ const Navbar = () => {
         </button>
       </div>
 
-      {/* Mobile Menu */}
+      {/* MOBILE MENU - OVERLAYS HERO */}
       {menuOpen && (
         <div
           className="
+            absolute
+            left-0
+            top-full
+            z-50
+            w-full
             border-t
             border-[#EDEDF1]
             bg-white
-            px-[22px]
-            pb-6
-            pt-4
+            shadow-[0_12px_30px_rgba(0,0,0,0.08)]
             lg:hidden
           "
         >
-          <div className="flex flex-col gap-1">
-            <a
-              href="#features"
-              onClick={closeMenu}
-              className="rounded-lg px-3 py-3 text-[14px] font-semibold text-[#6B6B76] hover:bg-[#FFF4F6] hover:text-[#FF3B5C]"
-            >
-              Features
-            </a>
-
-            <a
-              href="#shop"
-              onClick={closeMenu}
-              className="rounded-lg px-3 py-3 text-[14px] font-semibold text-[#6B6B76] hover:bg-[#FFF4F6] hover:text-[#FF3B5C]"
-            >
-              Products
-            </a>
-
-            <a
-              href="#vendors"
-              onClick={closeMenu}
-              className="rounded-lg px-3 py-3 text-[14px] font-semibold text-[#6B6B76] hover:bg-[#FFF4F6] hover:text-[#FF3B5C]"
-            >
-              Vendors
-            </a>
-
-            <a
-              href="#currency"
-              onClick={closeMenu}
-              className="rounded-lg px-3 py-3 text-[14px] font-semibold text-[#6B6B76] hover:bg-[#FFF4F6] hover:text-[#FF3B5C]"
-            >
-              Sahal Currency
-            </a>
-
-            <a
-              href="#screens"
-              onClick={closeMenu}
-              className="rounded-lg px-3 py-3 text-[14px] font-semibold text-[#6B6B76] hover:bg-[#FFF4F6] hover:text-[#FF3B5C]"
-            >
-              App Screens
-            </a>
-
-            <a
-              href="#contact"
-              onClick={closeMenu}
-              className="rounded-lg px-3 py-3 text-[14px] font-semibold text-[#6B6B76] hover:bg-[#FFF4F6] hover:text-[#FF3B5C]"
-            >
-              Contact
-            </a>
-          </div>
-
-          {/* Inline Mobile Download Button */}
-          <a
-            href="#download"
-            onClick={closeMenu}
+          <div
             className="
-              mt-4
-              inline-flex
-              items-center
-              justify-center
-              rounded-[14px]
-              bg-[#FF3B5C]
-              px-6
-              py-[14px]
-              text-[14px]
-              font-bold
-              text-white
-              shadow-[0_10px_22px_-8px_rgba(255,59,92,0.6)]
-              transition
-              duration-200
-              hover:-translate-y-[2px]
+              mx-auto
+              max-w-[1160px]
+              px-[22px]
+              pb-[22px]
+              pt-[18px]
             "
           >
-            Download App
-          </a>
+            <div className="flex flex-col gap-[4px]">
+              <a
+                href="#features"
+                onClick={closeMenu}
+                className={mobileLinkClass}
+              >
+                Features
+              </a>
+
+              <a
+                href="#shop"
+                onClick={closeMenu}
+                className={mobileLinkClass}
+              >
+                Products
+              </a>
+
+              <a
+                href="#vendors"
+                onClick={closeMenu}
+                className={mobileLinkClass}
+              >
+                Vendors
+              </a>
+
+              <a
+                href="#currency"
+                onClick={closeMenu}
+                className={mobileLinkClass}
+              >
+                Sahal Currency
+              </a>
+
+              <a
+                href="#screens"
+                onClick={closeMenu}
+                className={mobileLinkClass}
+              >
+                App Screens
+              </a>
+
+              <a
+                href="#contact"
+                onClick={closeMenu}
+                className={mobileLinkClass}
+              >
+                Contact
+              </a>
+            </div>
+
+            <a
+              href="#download"
+              onClick={closeMenu}
+              className="
+                mt-[14px]
+                inline-flex
+                items-center
+                justify-center
+                rounded-[14px]
+                bg-[#FF3B5C]
+                px-6
+                py-[14px]
+                text-[14px]
+                font-bold
+                text-white
+                shadow-[0_10px_22px_-8px_rgba(255,59,92,0.6)]
+              "
+            >
+              Download App
+            </a>
+          </div>
         </div>
       )}
     </nav>
